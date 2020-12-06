@@ -1,9 +1,7 @@
 package pl.rakowiecki.springcarrentapplication.client;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -26,6 +24,13 @@ public class ClientController {
                 .created(new URI("/clients/" + clientId))
                 .build();
 
+    }
+
+    @GetMapping("clients/{id}")
+    public ResponseEntity<Client> getClient(@PathVariable Long id) {
+        return clientService.getClient(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }
