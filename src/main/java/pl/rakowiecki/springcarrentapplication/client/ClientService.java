@@ -14,7 +14,7 @@ public class ClientService {
     }
 
     public Long addClient(Client client) {
-        final ClientEntity clientEntity = clientRepository.save(new ClientEntity(null, client.getName(), client.getSurname(), client.getCity(), client.getBorn()));
+        final ClientEntity clientEntity = clientRepository.save(new ClientEntity(null, client.getName(), client.getSurname(), client.getCity()));
         return clientEntity.getId();
     }
 

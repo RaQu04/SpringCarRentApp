@@ -20,13 +20,11 @@ class ClientControllerTest {
             null,
             "Adam",
             "Nowak",
-            "Kalisz",
-            "1997, 4, 12");
+            "Kalisz");
     public static final Client CLIENT_JAN_KOWALSKI = new Client(
             "Jan",
             "Kowalski",
-            "Poznan",
-            "1996, 4, 17");
+            "Poznan");
 
     @Autowired
     private ClientRepository clientRepository;
@@ -34,10 +32,9 @@ class ClientControllerTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-
     @BeforeEach
     void setUp() {
-
+        clientRepository.deleteAll();
     }
 
     @Test
@@ -65,6 +62,15 @@ class ClientControllerTest {
         //then
         assertThat(clientResult.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(clientResult.getBody()).isNotNull();
+    }
+
+    @Test
+    void shouldReturn404WhenClientIsNotFound() {
+        //when
+        final ResponseEntity<Client> clientResult = testRestTemplate.getForEntity("/clients/1", Client.class);
+
+        //then
+        assertThat(clientResult.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
 

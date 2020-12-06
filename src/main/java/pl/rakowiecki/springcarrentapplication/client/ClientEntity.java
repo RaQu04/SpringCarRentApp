@@ -21,6 +21,5 @@ public class ClientEntity {
     String name;
     String surname;
     String city;
-    String born;
 
 }
