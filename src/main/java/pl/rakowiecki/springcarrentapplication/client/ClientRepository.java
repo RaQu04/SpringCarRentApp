@@ -7,4 +7,6 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<ClientEntity, Long> {
 
     List<ClientEntity> findAllByName (String name);
+    List<ClientEntity> findAllBySurname (String surname);
+    List<ClientEntity> findAllByCity (String city);
 }

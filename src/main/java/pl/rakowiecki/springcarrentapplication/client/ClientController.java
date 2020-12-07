@@ -18,7 +18,7 @@ public class ClientController {
 
     @PostMapping("/clients")
     public ResponseEntity<Void> addClient(@RequestBody Client client) throws URISyntaxException {
-        Long clientId = clientService.addClient(client);
+        Long clientId = clientService.createClientEntityFromClientAndGetId(client);
 
         return ResponseEntity
                 .created(new URI("/clients/" + clientId))

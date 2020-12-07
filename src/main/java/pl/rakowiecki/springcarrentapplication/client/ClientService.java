@@ -13,7 +13,7 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public Long addClient(Client client) {
+    public Long createClientEntityFromClientAndGetId(Client client) {
         final ClientEntity clientEntity = clientRepository.save(new ClientEntity(null, client.getName(), client.getSurname(), client.getCity()));
         return clientEntity.getId();
     }
