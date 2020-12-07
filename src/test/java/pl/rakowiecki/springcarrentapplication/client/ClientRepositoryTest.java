@@ -52,7 +52,7 @@ class ClientRepositoryTest {
         final ClientEntity clientEntity = result.get(0);
         assertThat(clientEntity.getName()).isEqualTo("Lukasz");
         assertThat(clientEntity.getSurname()).isEqualTo("Rakowiecki");
-        assertThat(clientEntity.getCity()).isEqualTo("Poznań");
+        assertThat(clientEntity.getCity()).isEqualTo("Leszno");
     }
 
     @Test

@@ -33,7 +33,7 @@ public class ClientController {
     }
 
     @GetMapping("clients/{id}")
-    public ResponseEntity<Client> getClient(@PathVariable Long id) {
+    public ResponseEntity<Client> getClientById(@PathVariable Long id) {
         return clientService.getClient(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
