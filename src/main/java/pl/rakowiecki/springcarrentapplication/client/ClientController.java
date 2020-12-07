@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @RestController
 public class ClientController {
@@ -24,6 +25,11 @@ public class ClientController {
                 .created(new URI("/clients/" + clientId))
                 .build();
 
+    }
+
+    @GetMapping("/clients")
+    public List<Client> getAllClient() {
+        return clientService.getClients();
     }
 
     @GetMapping("clients/{id}")

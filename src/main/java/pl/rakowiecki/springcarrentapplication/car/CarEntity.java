@@ -1,4 +1,4 @@
-package pl.rakowiecki.springcarrentapplication.client;
+package pl.rakowiecki.springcarrentapplication.car;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,18 +8,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
-@Entity(name = "Clients")
 @Data
+@Entity(name = "Cars")
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientEntity {
+public class CarEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String name;
-    String surname;
-    String city;
-
+    String brand;
+    String model;
+    int yearOfProduction;
+    double engineSize;
+    Color color;
+    BigDecimal pricePerDay;
 }
