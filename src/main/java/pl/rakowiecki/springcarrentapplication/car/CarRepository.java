@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface CarRepository extends JpaRepository<CarEntity, Long> {
 
+    List<CarEntity> findAllById(Long id);
+
     List<CarEntity> findAllByBrand(String brand);
 
     List<CarEntity> findAllByModel(String model);
@@ -16,4 +18,6 @@ public interface CarRepository extends JpaRepository<CarEntity, Long> {
     List<CarEntity> findAllByColor(Color color);
 
     List<CarEntity> findAllByPricePerDay(BigDecimal price);
+
+    List<CarEntity> findAllByOrderByPricePerDayAsc();
 }

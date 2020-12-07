@@ -21,11 +21,9 @@ public class CarController {
     }
 
     @GetMapping("/cars")
-    public List<Car> getAllCars () {
+    public List<Car> getAllCars() {
         return null;
         //TODO
     }
-
-
 
 }
