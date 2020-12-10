@@ -13,4 +13,8 @@ public class Car {
     double engineSize;
     Color color;
     BigDecimal pricePerDay;
+
+    public static Car fromCarEntity(CarEntity carEntity) {
+        return new Car(carEntity.getBrand(), carEntity.getModel(), carEntity.getYearOfProduction(), carEntity.getEngineSize(), carEntity.getColor(), carEntity.getPricePerDay());
+    }
 }
