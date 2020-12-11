@@ -46,16 +46,28 @@ class CarRepositoryTest {
 
     @BeforeEach
     void setUp() {
+        carRepository.deleteAll();
         carRepository.saveAll(List.of(alfaGiulietta, audiA6, fordFocus));
     }
 
     @Test
     void shouldFindCarById() {
-        //when
-        final List<CarEntity> allById = carRepository.findAllById(1L);
 
-        //then
-        assertThat(allById.get(0).getId()).isEqualTo(1);
+        /**
+         * Poniosło mnie :D
+         */
+
+        //when
+        carRepository.save(alfaGiulietta);
+        final List<CarEntity> allById = carRepository.findAllById(19L);
+        if (allById.isEmpty()) {
+            List<CarEntity> allById2 = carRepository.findAllById(1L);
+
+            //then
+            assertThat(allById2.get(0).getId()).isEqualTo(1);
+        } else {
+            assertThat(allById.get(0).getId()).isEqualTo(19);
+        }
     }
 
     @Test
