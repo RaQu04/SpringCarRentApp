@@ -2,7 +2,9 @@ package pl.rakowiecki.springcarrentapplication.car;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CarService {
@@ -19,8 +21,14 @@ public class CarService {
         return carEntity.getId();
     }
 
-    public Optional<Car> getClient(Long id) {
+    public Optional<Car> getCarById(Long id) {
         return carRepository.findById(id)
                 .map(Car::fromCarEntity);
+    }
+
+    public List<Car> getCars() {
+        return carRepository.findAll()
+                .stream().map(Car::fromCarEntity)
+                .collect(Collectors.toList());
     }
 }

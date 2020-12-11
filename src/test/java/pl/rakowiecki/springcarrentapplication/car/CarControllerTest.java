@@ -53,7 +53,7 @@ class CarControllerTest {
     private TestRestTemplate testRestTemplate;
 
     @Test
-    void shouldCreateCarAndAddToRepository() {
+    void shouldCreateCar() {
         //given
         carRepository.deleteAll();
         //when
@@ -63,16 +63,19 @@ class CarControllerTest {
         //then
         assertThat(carResult.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(all.size()).isEqualTo(1);
+
+
     }
 
     @Test
-    void shouldReturnCarById() {
-
-        //when
-        final ResponseEntity<Car> forEntity = testRestTemplate.getForEntity("/cars/1", Car.class);
+    void shouldReturnAllCar() {
+        //given
+        List<CarEntity> all = carRepository.findAll();
+        ResponseEntity<Car> forEntity = testRestTemplate.getForEntity("/cars/1", Car.class);
+        String brand = Objects.requireNonNull(forEntity.getBody()).getBrand();
 
         //then
-        assertThat(forEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(Objects.requireNonNull(forEntity.getBody()).getBrand()).isEqualTo("Alfa Romeo");
+        assertThat(brand).isEqualTo("Alfa Romeo");
+        assertThat(all.size()).isEqualTo(3);
     }
 }

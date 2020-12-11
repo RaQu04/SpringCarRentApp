@@ -28,15 +28,14 @@ public class CarController {
 
     @GetMapping("/cars/{id}")
     public ResponseEntity<Car> getCarById(@PathVariable Long id) {
-        return carService.getClient(id)
+        return carService.getCarById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/cars")
     public List<Car> getAllCars() {
-        return null;
-        //TODO
+        return carService.getCars();
     }
 
 }
