@@ -26,9 +26,15 @@ public class CarService {
                 .map(Car::fromCarEntity);
     }
 
-    public List<Car> getCars() {
+    public List<Car> getAllCars() {
         return carRepository.findAll()
                 .stream().map(Car::fromCarEntity)
+                .collect(Collectors.toList());
+    }
+
+    public List<Car> getCarsByBrand(String brand) {
+        return carRepository.findAllByBrand(brand).stream()
+                .map(Car::fromCarEntity)
                 .collect(Collectors.toList());
     }
 }

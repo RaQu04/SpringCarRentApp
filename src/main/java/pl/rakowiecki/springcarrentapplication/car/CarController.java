@@ -3,6 +3,7 @@ package pl.rakowiecki.springcarrentapplication.car;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -35,7 +36,22 @@ public class CarController {
 
     @GetMapping("/cars")
     public List<Car> getAllCars() {
-        return carService.getCars();
+        return carService.getAllCars();
+    }
+
+    @GetMapping("/cars/search")
+    public List<Car> getCarsBySearch(@RequestParam(required = false) String brand,
+                                     @RequestParam(required = false) String model,
+                                     @RequestParam(required = false) int yearOfProduction,
+                                     @RequestParam(required = false) Color color,
+                                     @RequestParam(required = false) BigDecimal pricePerDay) {
+        if (brand == null) {
+            return carService.getAllCars();
+        } else {
+            return carService.getCarsByBrand(brand);
+        }
+
+        //TODO - jak inaczej to zapisac bez IF
     }
 
 }
