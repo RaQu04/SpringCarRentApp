@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -52,7 +53,7 @@ class CarControllerTest {
     private TestRestTemplate testRestTemplate;
 
     @Test
-    void shouldCreateClient() {
+    void shouldCreateCarAndAddToRepository() {
         //given
         carRepository.deleteAll();
         //when
@@ -62,7 +63,16 @@ class CarControllerTest {
         //then
         assertThat(carResult.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(all.size()).isEqualTo(1);
+    }
 
+    @Test
+    void shouldReturnCarById() {
 
+        //when
+        final ResponseEntity<Car> forEntity = testRestTemplate.getForEntity("/cars/1", Car.class);
+
+        //then
+        assertThat(forEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(Objects.requireNonNull(forEntity.getBody()).getBrand()).isEqualTo("Alfa Romeo");
     }
 }
