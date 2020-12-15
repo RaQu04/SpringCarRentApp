@@ -64,7 +64,6 @@ class CarControllerTest {
         assertThat(carResult.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(all.size()).isEqualTo(1);
 
-
     }
 
     @Test
