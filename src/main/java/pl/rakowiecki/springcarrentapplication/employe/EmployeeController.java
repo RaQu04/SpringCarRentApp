@@ -16,7 +16,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping("/employee")
+    @PostMapping("/employees")
     public ResponseEntity<Void> addEmployee(@RequestBody Employee employee) throws URISyntaxException {
         Long employeeId = employeeService.createEmployeeEntityFromEmployeeAndGetId(employee);
 
@@ -25,15 +25,20 @@ public class EmployeeController {
                 .build();
     }
 
-    @GetMapping("/employee")
+    @GetMapping("/employees")
     public List<EmployeeEntity> getAllEmployees() {
         return employeeService.getEmployees();
     }
 
-    @GetMapping("/employee/{id}")
+    @GetMapping("/employees/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        return employeeService.getEmployee(id)
+        return employeeService.getEmployeeById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/employees/level/{level}")
+    public List<EmployeeEntity> getEmployeeByLevel(@PathVariable Level level) {
+        return employeeService.getEmployeesByLevel(level);
     }
 }

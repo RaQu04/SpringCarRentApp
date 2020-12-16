@@ -23,8 +23,13 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Optional<Employee> getEmployee(Long id){
+    public Optional<Employee> getEmployeeById(Long id){
         return employeeRepository.findById(id)
                 .map(Employee::fromEmployeeEntity);
     }
+
+    public List<EmployeeEntity> getEmployeesByLevel(Level level) {
+        return employeeRepository.findAllByLevel(level);
+    }
+
 }
