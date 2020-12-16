@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ClientService {
@@ -25,9 +24,7 @@ public class ClientService {
                 .map(Client::fromClientEntity);
     }
 
-    public List<Client> getClients() {
-        return clientRepository.findAll().stream()
-                .map(clientEntity -> new Client(clientEntity.getName(), clientEntity.getSurname(), clientEntity.getCity()))
-                .collect(Collectors.toList());
+    public List<ClientEntity> getClients() {
+        return clientRepository.findAll();
     }
 }
