@@ -1,6 +1,10 @@
 package pl.rakowiecki.springcarrentapplication.rent;
 
 import org.springframework.stereotype.Service;
+import pl.rakowiecki.springcarrentapplication.car.CarEntity;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Service
 public class RentService {
@@ -11,4 +15,17 @@ public class RentService {
         this.rentRepository = rentRepository;
     }
 
+    public Long createRentEntityByRentAndGetId(Rent rent) {
+        final RentEntity rentEntity = rentRepository.save(new RentEntity(
+                null,
+                rent.getCar(),
+                rent.getClient(),
+                rent.getRentDate(),
+                rent.getReturnDate(),
+                rent.getRentDays(),
+                rent.getRentalPrice()
+        ));
+
+        return rentEntity.getId();
+    }
 }

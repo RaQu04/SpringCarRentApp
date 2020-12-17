@@ -21,7 +21,7 @@ public class RentEntity {
     private Long id;
 
     @OneToOne
-    public CarEntity car;
+    private CarEntity car;
 
     @OneToOne
     private ClientEntity client;
