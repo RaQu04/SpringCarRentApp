@@ -16,7 +16,15 @@ public class CarService {
     }
 
     public Long createCarEntityByCarAndGetId(Car car) {
-        final CarEntity carEntity = carRepository.save(new CarEntity(null, car.getBrand(), car.getModel(), car.getYearOfProduction(), car.getEngineSize(), car.getColor(), car.getPricePerDay()));
+        final CarEntity carEntity = carRepository.save(new CarEntity(
+                null,
+                car.getBrand(),
+                car.getModel(),
+                car.getYearOfProduction(),
+                car.getEngineSize(),
+                car.getColor(),
+                car.getPricePerDay()
+        ));
 
         return carEntity.getId();
     }

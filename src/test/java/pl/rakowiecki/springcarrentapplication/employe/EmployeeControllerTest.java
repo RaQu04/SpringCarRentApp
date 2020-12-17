@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class EmployeeControllerTest {
@@ -31,7 +30,7 @@ class EmployeeControllerTest {
             Level.CEO
     );
 
-    public static final Employee EMPLOYEE = new Employee(
+    public static final Employee EMPLOYEE_JAN = new Employee(
             "Janek",
             "Tester",
             Level.SENIOR
@@ -54,7 +53,7 @@ class EmployeeControllerTest {
     @Test
     void shouldSaveEmployeeToRepository() {
         //given
-        final ResponseEntity<Void> voidResponseEntity = testRestTemplate.postForEntity("/employees", EMPLOYEE, Void.class);
+        final ResponseEntity<Void> voidResponseEntity = testRestTemplate.postForEntity("/employees", EMPLOYEE_JAN, Void.class);
 
         //when
         final List<EmployeeEntity> employeeList = employeeRepository.findAll();
@@ -81,6 +80,7 @@ class EmployeeControllerTest {
         //then
         assertThat(byId.get().getName()).isEqualTo("John");
      }
+
 
 
 }
