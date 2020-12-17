@@ -5,6 +5,7 @@ import pl.rakowiecki.springcarrentapplication.car.CarEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class RentService {
@@ -27,5 +28,9 @@ public class RentService {
         ));
 
         return rentEntity.getId();
+    }
+
+    public List<RentEntity> getAllRents() {
+        return rentRepository.findAll();
     }
 }
