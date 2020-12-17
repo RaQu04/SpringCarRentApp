@@ -3,11 +3,10 @@ package pl.rakowiecki.springcarrentapplication.rent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.rakowiecki.springcarrentapplication.car.CarEntity;
+import pl.rakowiecki.springcarrentapplication.client.ClientEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -20,10 +19,17 @@ public class RentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int carId;
-    private int clientId;
+
+    @OneToOne
+    public CarEntity car;
+
+    @OneToOne
+    private ClientEntity client;
+
     private LocalDate rentDate;
     private LocalDate returnDate;
     private int rentDays;
     private BigDecimal rentalPrice;
+
+
 }
