@@ -20,10 +20,10 @@ public class RentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private CarEntity car;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private ClientEntity client;
 
     private LocalDate rentDate;
