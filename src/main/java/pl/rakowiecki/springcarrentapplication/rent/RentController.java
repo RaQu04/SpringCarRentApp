@@ -33,4 +33,12 @@ public class RentController {
         return rentService.getAllRents();
     }
 
+    @PostMapping("addRents")
+    public ResponseEntity<Void> addRentWithRentCreator(@RequestBody RentCreator rentCreator) throws URISyntaxException {
+
+        rentService.createRentByRentCreator(rentCreator);
+        return ResponseEntity
+                .created(new URI("rents/" + rentCreator.getId()))
+                .build();
+    }
 }

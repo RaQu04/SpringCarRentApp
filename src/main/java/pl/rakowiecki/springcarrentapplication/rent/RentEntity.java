@@ -9,6 +9,7 @@ import pl.rakowiecki.springcarrentapplication.client.ClientEntity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Entity(name = "Rent")
 @Data
@@ -32,4 +33,7 @@ public class RentEntity {
     private BigDecimal rentalPrice;
 
 
+    public RentEntity(Long id, Optional<CarEntity> carById, Optional<ClientEntity> clientById, Object rentDate, Object returnDate, int rentDays, BigDecimal ten) {
+
+    }
 }

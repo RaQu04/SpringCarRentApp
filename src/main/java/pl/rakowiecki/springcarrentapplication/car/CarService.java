@@ -34,6 +34,10 @@ public class CarService {
                 .map(Car::fromCarEntity);
     }
 
+    public Optional<CarEntity> getCarEntityById(Long id) {
+        return carRepository.findById(id);
+    }
+
     public List<Car> getAllCars() {
         return carRepository.findAll()
                 .stream().map(Car::fromCarEntity)

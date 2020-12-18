@@ -19,9 +19,12 @@ public class ClientService {
         return clientEntity.getId();
     }
 
-    public Optional<Client> getClient(Long id) {
+    public Optional<Client> getClientById(Long id) {
         return clientRepository.findById(id)
                 .map(Client::fromClientEntity);
+    }
+    public Optional<ClientEntity> getClientEntityById(Long id) {
+        return clientRepository.findById(id);
     }
 
     public List<ClientEntity> getClients() {
